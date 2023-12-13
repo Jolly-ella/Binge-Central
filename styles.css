@@ -70,7 +70,7 @@ body::before {
 
   #startBtn {
     position: absolute;
-    left: 58%;
+    left: 43%;
     height: 55px;
     background-color: rgb(223, 15, 15);
     color: white;
@@ -133,4 +133,14 @@ body::before {
   left: 385px;
   bottom: 100px;
 
+}
+
+#spinner {
+  position: absolute;
+  left: 385px;
+  bottom: 80px;
+}
+
+#signInMsg {
+  margin-top: 20px;
 }

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&family=Yellowtail&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
-    <title>Netflix </title>
+    <title>Binge Central </title>
 </head>
 
 <body>
@@ -29,8 +29,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
                     <div class="navbar-nav me-5">
-                        <button id="userSignIn" class="nav-link me-5 ">Streamer Sign In</button>
-                        <button class="nav-link me-5 " href="index.html">Admin Sign In</button>
+                        <button id="userSignIn" class="nav-link me-5 ">Sign In</button>
+
 
 
                     </div>
@@ -52,6 +52,7 @@
                     <input type="password" class="form-control" id="userPassword" placeholder="Enter password">
                 </div>
                 <button id="userSignBtn" class="btn  mt-3">Sign in</button>
+                <p id="signInMsg"></p>
                 <p class="mt-5 signP">New to Binge Central, <a class="signA" href="index.html">Sign up here</a></p>
             </form>
         </div>
@@ -63,9 +64,11 @@
         <p class="text-center fs-4 mt-4">Watch anywhere. Cancel anytime.</p>
         <p class="text-center fs-5 mt-4">Ready to watch? Enter your email to create or restart your membership.</p>
         <form id="emailForm" action="">
-            <input type="email" placeholder="Enter Email" id='forEmail'>
-            <p id="msg"></p>
+
             <button class="btn" id="startBtn">Get Started</button>
+            <!-- <div class="spinner-border" id="spinner" role="status" hidden>
+                <span class="visually-hidden">Loading...</span>
+            </div> -->
         </form>
 
 
@@ -73,10 +76,50 @@
 
     </section>
 
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js'
+
+        // Add Firebase products that you want to use
+        import {
+            getAuth, createUserWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut,
+            signInWithEmailAndPassword
+        } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js'
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCa3g8T7HZxQOLOMaNhY8Y7TZspXXqcRa8",
+            authDomain: "binge-central-51b59.firebaseapp.com",
+            projectId: "binge-central-51b59",
+            storageBucket: "binge-central-51b59.appspot.com",
+            messagingSenderId: "817942334926",
+            appId: "1:817942334926:web:dfee9bf09b9eeb838eaf9f"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        userSignBtn.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const email = userEmail.value;
+            const password = userPassword.value;
 
 
+            try {
+                const res = await signInWithEmailAndPassword(auth, email, password)
+                console.log(res, 'User has been signed in');
+                moviePage();
+
+            } catch (error) {
+                console.log(error);
+            }
+        })
 
 
+       
+
+    </script>
 
 
 
